@@ -4,7 +4,9 @@ import "./App.css";
 import { sendData, getData } from "./actions/menuAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import Menu from "./components/menu";
+import { Drink } from "./drinks";
+
+var drinks = [];
 
 class App extends Component {
   constructor(props) {
@@ -31,24 +33,50 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.props.getDataFromBackend.drinks.length())
+    var i;
+    for (i = 0; i < this.props.getDataFromBackend.length; i++) {
+      drinks.push(new Drink(this.props.getDataFromBackend[i]));
+    }
     return (
       <div className="App">
-        <Menu data={ this.props.getDataFromBackend.drinks }/>
-        <div>
-          <p>
-            <strong>Post to Server:</strong>
-          </p>
+        <div className="columns search">
           <input
+            className="input is-primary is-rounded is-four-fifths"
+            placeholder="Find instructions on how to make these drinks."
             type="text"
             value={this.state.post}
             onChange={(e) => this.setState({ post: e.target.value })}
           />
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button
+            className="button is-primary is-rounded"
+            onClick={this.handleSubmit}
+          >
+            Search
+          </button>
         </div>
-        <p style={{ color: "blue" }}>
-          <b>{this.props.dataFromBackend.drink}</b>
-        </p>
+        <p><strong>Instructions: </strong>{this.props.dataFromBackend.drink}</p>
+
+        <div>
+          {drinks.map((drink, index) => {
+            return (
+              <div key={index} className="card">
+                <div className="card-content">
+                  <div className="media">
+                    <div className="media-left">
+                      <figure className="image is-64x64">
+                        <img src={drink.image} alt="Placeholder" />
+                      </figure>
+                    </div>
+                    <div className="media-content">
+                      <p className="title is-4">{drink.name}</p>
+                      <p className="subtitle is-6">Drink ID: {drink.id}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

@@ -26,8 +26,11 @@ export const getData = (url) => {
       .then((res) => {
         return res.json();
       })
-      .then((res) => {
-        dispatch({ type: "GET_DATA", getDataFromBackend: res });
+      .then((json) => {
+        return json.drinks;
+      })
+      .then((drinks) => {
+        dispatch({ type: "GET_DATA", getDataFromBackend: drinks });
       })
       .catch((err) => {
         console.log("API failed");
