@@ -2,6 +2,7 @@ export const initialState = {
   dataFromBackend: {},
   getDataFromBackend: {},
 };
+
 export const menuReducer = (state = initialState, action) => {
   switch (action.type) {
     case "DATA_FROM_BACKEND":

@@ -4,6 +4,8 @@ import "./App.css";
 import { sendData, getData } from "./actions/menuAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Menu from "./components/menu";
+
 class App extends Component {
   constructor(props) {
     super();
@@ -21,7 +23,7 @@ class App extends Component {
   }
 
   callApi = () => {
-    this.props.getData("/api/hello");
+    this.props.getData("/api/drinks");
   };
 
   handleSubmit = () => {
@@ -29,9 +31,10 @@ class App extends Component {
   };
 
   render() {
+    // console.log(this.props.getDataFromBackend.drinks.length())
     return (
       <div className="App">
-        {/* <p>{this.props.getDataFromBackend.express}</p> TODO */}
+        <Menu data={ this.props.getDataFromBackend.drinks }/>
         <div>
           <p>
             <strong>Post to Server:</strong>
