@@ -41,7 +41,7 @@ class App extends Component {
       <div className="App">
         <div className="columns search">
           <input
-            className="input is-primary is-rounded is-four-fifths"
+            className="input is-primary is-rounded"
             placeholder="Find instructions on how to make these drinks."
             type="text"
             value={this.state.post}

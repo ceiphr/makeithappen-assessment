@@ -1,9 +1,19 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css";
 
-body {
-  position: absolute;
-  width: 40vw;
-  left: 30vw;
+@media only screen and (min-width: 800px) {
+  body {
+    position: absolute;
+    width: 40vw;
+    left: 30vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    position: absolute;
+    width: 90vw;
+    left: 5vw;
+  }
 }
 
 .search {
