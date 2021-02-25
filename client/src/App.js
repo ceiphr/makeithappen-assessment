@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
+
 //Redux components
 import { sendData, getData } from "./actions/menuAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Drink } from "./drinks";
+import { Drink } from "./Drink";
 
 var drinks = [];
 
@@ -33,12 +34,15 @@ class App extends Component {
   };
 
   render() {
+    // Put drink data from redux store in an array of drink objects
     var i;
     for (i = 0; i < this.props.getDataFromBackend.length; i++) {
       drinks.push(new Drink(this.props.getDataFromBackend[i]));
     }
+
     return (
       <div className="App">
+        {/* Search for instructions on how to make a given drink from the list */}
         <div className="columns search">
           <input
             className="input is-primary is-rounded"
@@ -54,8 +58,16 @@ class App extends Component {
             Search
           </button>
         </div>
-        <p><strong>Instructions: </strong>{this.props.dataFromBackend.drink}</p>
+        <p>
+          {this.props.dataFromBackend.drink ? (
+            <strong>Instructions: </strong>
+          ) : (
+            ""
+          )}
+          {this.props.dataFromBackend.drink}
+        </p>
 
+        {/* Display list of drinks */}
         <div>
           {drinks.map((drink, index) => {
             return (

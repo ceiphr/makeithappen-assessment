@@ -19,6 +19,7 @@ export const sendData = (url, payload) => {
       });
   };
 };
+
 //Async action creator for GET API Route
 export const getData = (url) => {
   return (dispatch) => {
