@@ -25,13 +25,13 @@ class App extends Component {
   };
 
   handleSubmit = () => {
-    this.props.sendData("/api/data", { post: this.state.post });
+    this.props.sendData("/api/drink", { post: this.state.post });
   };
 
   render() {
     return (
       <div className="App">
-        <p>{this.props.getDataFromBackend.express}</p>
+        {/* <p>{this.props.getDataFromBackend.express}</p> TODO */}
         <div>
           <p>
             <strong>Post to Server:</strong>
@@ -44,7 +44,7 @@ class App extends Component {
           <button onClick={this.handleSubmit}>Submit</button>
         </div>
         <p style={{ color: "blue" }}>
-          <b>{this.props.dataFromBackend.data}</b>
+          <b>{this.props.dataFromBackend.drink}</b>
         </p>
       </div>
     );
